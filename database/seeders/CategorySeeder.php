@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -19,11 +20,13 @@ class CategorySeeder extends Seeder
             'name' => 'Foods',
             'description' => 'Our foods are fresh and healthy',
             'icon' => 'images/categories/foods.png',
+            'slug' => Str::slug("Foods"),
           ],
           [
             'name' => 'Drinks',
             'description' => 'Our drinks are fresh and healthy',
             'icon' => 'images/categories/drinks.png',
+            'slug' => Str::slug("Drinks"),
           ],
         ];
 

@@ -2,7 +2,7 @@
   'error' => false
 ])
 
-<select {!! $attributes->merge(['class' => 'form-select ' . ($error ? 'is-invalid' : '')]) !!}>
+<select {!! $attributes->merge(['class' => 'form-control ' . ($error ? 'is-invalid' : '')]) !!}>
   {{ $slot }}
 </select>
 

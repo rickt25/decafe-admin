@@ -18,7 +18,10 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
+    @stack('styles')
 
 </head>
 
@@ -50,7 +53,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Decafe 2022</span>
                     </div>
                 </div>
             </footer>
@@ -104,6 +107,41 @@
     <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-bar-demo.js') }}"></script>
+
+    <!-- Sweet Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+      $(()=>{
+        $.ajax({
+          url: '/api/v1/category',
+          type: 'GET',
+          success: function(data) {
+            if(data){
+              $.each(data, function(index, value) {
+                $('#navCategories').append('<a class="collapse-item" href="/menu?category='+ value.name.toLowerCase() +'">' + value.name + '</a>');
+              });
+            }else{
+              $('#navCategories').append('<a class="collapse-item" href="#">No categories</a>');
+            }
+          }
+        });
+
+        @if(session('success'))
+          console.log("ada ni");
+          Swal.fire({
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            icon: 'success',
+            confirmButtonText: 'Okay'
+          });
+        @endif
+      });
+
+
+    </script>
+
+    @stack('scripts')
 
 </body>
 

@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('category', [CategoryController::class, 'getCategories']);
 Route::get('menu/{category_id}', [MenuController::class, 'getMenus']);
+Route::get('menu/promo', [MenuController::class, 'getPromoMenus']);

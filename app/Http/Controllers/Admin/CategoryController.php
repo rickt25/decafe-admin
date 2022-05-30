@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
+use App\Http\Traits\UploadHandler;
 
 class CategoryController extends Controller
 {
+    use UploadHandler;
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +31,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.categories.create');
     }
 
     /**
@@ -35,9 +40,19 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $data = $request->all();
+
+        if($request->file('icon')){
+          $data['icon'] = $this->uploadFile($request->file('icon'), '', Str::slug($data['name']).'_'.Carbon::today()->format('Ymd'));
+        }
+        $data['slug'] = Str::slug($data['name']);
+
+        Category::create($data);
+        return redirect()
+            ->route('category.index')
+            ->with('success' ,'Berhasil tambah kategori baru');
     }
 
     /**

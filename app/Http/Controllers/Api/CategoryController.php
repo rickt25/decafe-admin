@@ -9,9 +9,13 @@ use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
     public function getCategories(){
-      $categories = Category::all();
+      $categories = Category::with('menus')->get();
+
       foreach($categories as $category){
-        $category->icon = asset($category->icon);
+          $category->icon = asset($category->icon);
+          foreach($category->menus as $menu){
+            $menu->image = asset($menu->image);
+          }
       }
       return response()->json($categories);
     }

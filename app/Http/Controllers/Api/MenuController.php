@@ -18,15 +18,11 @@ class MenuController extends Controller
     }
 
     public function getMenus(){
-      $categories = Category::with('menus')->get();
-
-      foreach($categories as $category){
-          $category->icon = asset($category->icon);
-          foreach($category->menus as $menu){
-            $menu->image = asset($menu->image);
-          }
+      $menus = Menu::all();
+      foreach($menus as $menu){
+        $menu->image = asset($menu->image);
       }
-      return response()->json($categories);
+      return response()->json($menus);
     }
 
     public function getMenuByCategory($category_id){
@@ -36,5 +32,6 @@ class MenuController extends Controller
       }
       return response()->json($menus);
     }
+
 
 }

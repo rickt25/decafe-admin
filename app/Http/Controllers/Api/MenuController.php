@@ -17,11 +17,20 @@ class MenuController extends Controller
         return response()->json($menus);
     }
 
-    public function getMenus($category_id){
-        $menus = Category::find($category_id)->menus;
-        foreach($menus as $menu){
-            $menu->image = asset($menu->image);
-        }
-        return response()->json($menus);
+    public function getMenus(){
+      $menus = Menu::all();
+      foreach($menus as $menu){
+        $menu->image = asset($menu->image);
+      }
+      return response()->json($menus);
     }
+
+    public function getMenuByCategory($category_id){
+      $menus = Category::find($category_id)->menus;
+      foreach($menus as $menu){
+        $menu->image = asset($menu->image);
+      }
+      return response()->json($menus);
+    }
+
 }

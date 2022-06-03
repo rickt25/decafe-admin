@@ -15,6 +15,9 @@ class CategoryController extends Controller
       $promo->name = "Promo";
       $promo->description = "Limited time menu and menus on discount!";
       $promo->icon = asset('images/categories/promo.png');
+      $promo->slug = "promo";
+      $promo->created_at = "2020-05-19 17:34:50";
+      $promo->updated_at = "2020-05-19 17:34:50";
       $promo->menus = Menu::where('is_promo', true)->get();
 
       $categories = Category::with('menus')->get();

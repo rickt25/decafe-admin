@@ -10,6 +10,15 @@ use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
+    public function viewTransaction(){
+        $transactions = Order::with('order_details')->get();
+        foreach($transactions as $transaction){
+            $transaction->total = $transaction->order_details->sum('total');
+        }
+
+        return response()->json($transactions);
+    }
+
     public function addTransaction(Request $request){
         $orders = $request->orders;
 

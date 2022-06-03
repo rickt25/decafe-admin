@@ -17,7 +17,7 @@ class OrderController extends Controller
     }
 
     public function addTransaction(Request $request){
-        $orders = $request->orders;
+        $orders = json_decode($request->orders);
 
         if(!$orders){
             return response()->json(['message' => 'No order found'], 400);

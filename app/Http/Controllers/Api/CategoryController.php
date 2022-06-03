@@ -20,6 +20,10 @@ class CategoryController extends Controller
       $promo->updated_at = "2020-05-19 17:34:50";
       $promo->menus = Menu::where('is_promo', true)->get();
 
+      foreach($promo->menus as $menu){
+        $menu->image = asset($menu->image);
+      }
+
       $categories = Category::with('menus')->get();
 
       foreach($categories as $category){

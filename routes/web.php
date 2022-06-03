@@ -27,3 +27,4 @@ Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('category', CategoryController::class);
 Route::resource('menu', MenuController::class);
+

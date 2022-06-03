@@ -24,3 +24,5 @@ Route::get('category', [CategoryController::class, 'getCategories']);
 Route::get('menu', [MenuController::class, 'getMenus']);
 Route::get('menu/{category_id}', [MenuController::class, 'getMenuByCategory']);
 Route::get('promoMenu', [MenuController::class, 'getPromoMenus']);
+
+Route::post('order', [OrderController::class, 'addTransaction']);

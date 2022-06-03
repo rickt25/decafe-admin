@@ -18,7 +18,7 @@ class CreateOrderDetailsTable extends Migration
             $table->foreignId('order_id')->constrained();
             $table->foreignId('menu_id')->constrained();
             $table->integer('qty');
-            $table->string('notes');
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

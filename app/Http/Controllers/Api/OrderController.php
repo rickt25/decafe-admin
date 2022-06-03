@@ -17,17 +17,17 @@ class OrderController extends Controller
     }
 
     public function addTransaction(Request $request){
-        $orders = json_decode($request->orders);
+        $data = $request->data;
 
-        if(!$orders){
+        if(!$data['orders']){
             return response()->json(['message' => 'No order found'], 400);
         }
 
         $transaction = Order::create([
-          'is_dine_in' => $request->is_dine_in,
+          'is_dine_in' => $data['is_dine_in'],
         ]);
 
-        foreach($orders as $newOrder){
+        foreach($data['orders'] as $newOrder){
           OrderDetail::create([
             'order_id' => $transaction->id,
             'menu_id' => $newOrder['menu_id'],

@@ -10,8 +10,12 @@ use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
-    public function addTransaction(OrderRequest $request){
+    public function addTransaction(Request $request){
         $orders = $request->orders;
+
+        if(!$orders){
+            return response()->json(['message' => 'No order found'], 400);
+        }
 
         $transaction = Order::create([
           'is_dine_in' => $request->is_dine_in,

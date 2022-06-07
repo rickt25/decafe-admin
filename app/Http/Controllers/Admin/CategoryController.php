@@ -21,7 +21,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('pages.categories.index', compact('categories'));
+        return view('pages.category.index', compact('categories'));
     }
 
     /**
@@ -31,7 +31,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('pages.categories.create');
+        return view('pages.category.create');
     }
 
     /**
@@ -74,7 +74,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('pages.category.edit', compact('category'));
     }
 
     /**
@@ -84,9 +84,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+      $category->update($request->all());
+      return redirect()
+              ->route('category.index')
+              ->with('success', 'Berhasil update kategori');
     }
 
     /**
@@ -97,6 +100,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()
+                  ->route('category.index')
+                  ->with('success', 'Berhasil hapus kategori');
     }
 }

@@ -36,4 +36,10 @@ class CategoryController extends Controller
 
       return response()->json($categories);
     }
+
+    public function getCategoryList(){
+      $categories = Category::with('menus')->get();
+
+      return response()->json($categories);
+    }
 }

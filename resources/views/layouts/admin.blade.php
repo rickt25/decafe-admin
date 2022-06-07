@@ -114,7 +114,7 @@
     <script>
       $(()=>{
         $.ajax({
-          url: '/api/v1/category',
+          url: '/api/v1/categorylist',
           type: 'GET',
           success: function(data) {
             if(data){

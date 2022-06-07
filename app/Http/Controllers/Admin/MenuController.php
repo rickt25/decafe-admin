@@ -26,7 +26,7 @@ class MenuController extends Controller
           return redirect()->back();
         }
         $menus = $category->menus ?? [];
-        return view('pages.menus.index', compact('menus', 'category'));
+        return view('pages.menu.index', compact('menus', 'category'));
     }
 
     /**
@@ -38,7 +38,7 @@ class MenuController extends Controller
     {
         $categories = Category::all();
         $category = Category::where('slug', $request->category)->first();
-        return view('pages.menus.create', compact('categories','category'));
+        return view('pages.menu.create', compact('categories','category'));
     }
 
     /**
@@ -81,7 +81,7 @@ class MenuController extends Controller
     public function edit(Menu $menu)
     {
         $categories = Category::all();
-        return view('pages.menus.edit', compact('categories', 'menu'));
+        return view('pages.menu.edit', compact('categories', 'menu'));
     }
 
     /**

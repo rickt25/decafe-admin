@@ -36,8 +36,13 @@
                           <td>{{ $category->description }}</td>
                           <td class="fit">
                             <a href="" class="btn btn-info btn-sm">Menus</a>
-                            <a href="" class="btn btn-success btn-sm">Edit</a>
-                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{{ route('category.edit', $category->id) }}" class="btn btn-success btn-sm">Edit</a>
+                            <button type="submit" id="btnDelete" class="btn btn-danger btn-sm">Delete</button>
+
+                            <form id="formDelete" action="{{ route('category.destroy', $category->id) }}" method="POST">
+                              @csrf
+                              @method('DELETE')
+                            </form>
                           </td>
                         </tr>
                       @endforeach
@@ -55,6 +60,22 @@
   <script>
     $(document).ready(function() {
       $('#dataTable').DataTable();
+
+      $("#btnDelete").on('click', function(){
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $("#formDelete").submit();
+          }
+        })
+      })
     });
   </script>
 @endpush

@@ -19,4 +19,8 @@ class Order extends Model
     public function orderDetails(){
         return $this->hasMany(OrderDetail::class);
     }
+
+    public function getGrandTotalAttribute(){
+        return $this->orderDetails->sum('menu_price');
+    }
 }

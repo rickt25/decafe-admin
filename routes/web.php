@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +29,7 @@ Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('category', CategoryController::class);
 Route::resource('menu', MenuController::class);
+Route::resource('order', OrderController::class);
+Route::resource('transaction', TransactionController::class);
+Route::patch('change-status/order', [OrderController::class, 'changeStatus'])->name('order.change-status');
 

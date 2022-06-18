@@ -58,15 +58,15 @@
     </div>
 
     <!-- Nav Item - Categories -->
-    <li class="nav-item">
-      <a class="nav-link" href="">
+    <li class="nav-item @if(request()->routeIs('order.*')) active @endif">
+      <a class="nav-link" href="{{ route('order.index') }}">
         <i class="fas fa-concierge-bell"></i>
         <span>Orders</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
-      <a class="nav-link" href="">
+    <li class="nav-item @if(request()->routeIs('transaction.*')) active @endif">
+      <a class="nav-link" href="{{ route('transaction.index') }}">
         <i class="fas fa-receipt"></i>
         <span>Transactions</span></a>
     </li>

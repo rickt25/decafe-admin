@@ -24,6 +24,7 @@ class OrderController extends Controller
         }
 
         $transaction = Order::create([
+          'number' => $request->number,
           'is_dine_in' => $request->is_dine_in,
         ]);
 

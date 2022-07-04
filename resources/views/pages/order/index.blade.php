@@ -17,7 +17,7 @@
       </div>
       <div class="card-body">
           <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <table class="table table-bordered" id="tableOrder" width="100%" cellspacing="0">
                   <thead>
                       <tr>
                           <th class="fit">Order Id</th>
@@ -61,7 +61,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="tableFinish" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th class="fit">Order Id</th>
@@ -93,7 +93,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="tableCancel" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th class="fit">Order Id</th>
@@ -125,7 +125,9 @@
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
   <script>
     $(document).ready(function() {
-      $('#dataTable').DataTable();
+      $('#tableOrder').DataTable();
+      $('#tableFinish').DataTable();
+      $('#tableCancel').DataTable();
 
       $("#btnDelete").on('click', function(){
         Swal.fire({

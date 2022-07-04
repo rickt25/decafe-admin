@@ -35,18 +35,19 @@
                           <td>{{ $menu->name }}</td>
                           <td>{{ $menu->description }}</td>
                           <td class="fit">
+                            <form action="{{ route('menu.destroy', $menu->id) }}" method="POST">
+                              @csrf
+                              @method('DELETE')
                               <a href="{{ route('menu.edit', $menu->id) }}" class="btn btn-success btn-sm">Edit</a>
-                              <button type="submit" id="btnDelete" class="btn btn-danger btn-sm">Delete</button>
-                              <form id="formDelete" action="{{ route('menu.destroy', $menu->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                              </form>
+                              <button type="submit" class="btn btn-danger btn-sm btnDelete">Delete</button>
+                            </form>
                           </td>
                         </tr>
                       @endforeach
                   </tbody>
               </table>
           </div>
+
       </div>
   </div>
 
@@ -58,8 +59,10 @@
   <script>
     $(document).ready(function() {
       $('#dataTable').DataTable();
+    });
 
-      $("#btnDelete").on('click', function(){
+    $(".btnDelete").each(function() {
+      $(this).click(function() {
         Swal.fire({
           title: 'Are you sure?',
           text: "You won't be able to revert this!",
@@ -70,10 +73,13 @@
           confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
           if (result.isConfirmed) {
-            $("#formDelete").submit();
+            $(this).closest("form").submit();
+          }else{
+            return false;
           }
-        })
-      })
+        });
+        return false;
+      });
     });
   </script>
 @endpush

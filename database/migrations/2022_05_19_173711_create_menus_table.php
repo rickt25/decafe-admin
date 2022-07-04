@@ -23,6 +23,7 @@ class CreateMenusTable extends Migration
             $table->boolean('is_available')->default(true);
             $table->boolean('is_promo')->default(false);
             $table->string('image');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
